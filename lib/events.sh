@@ -85,10 +85,10 @@ function configure_wordpress() {
 
 function spec_wordpress() {
   # it should response 200 OK
-  status_code=`curl -sLI http://localhost/ -o /dev/null -w '%{http_code}\n'`
+  status_code=`curl -sLI http://localhost/ --noproxy localhost -o /dev/null -w '%{http_code}\n'`
   if [ "${status_code}" != "200" ]; then
     echo "localhost:80 returns ${status_code}" 1>&2
-    curl http://localhost/
+    curl http://localhost/ --noproxy localhost
     exit 1
   fi
 }
