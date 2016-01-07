@@ -27,7 +27,7 @@ function setup_wordpress() {
   chmod a+x /usr/local/bin/wp
   [ -d /var/www/wordpress ] || mkdir /var/www/wordpress
   chown apache:apache /var/www/wordpress
-  sudo -u apache -- /usr/local/bin/wp core download --path=/var/www/wordpress --locale=ja
+  sudo -u apache -- /usr/local/bin/wp core download --path=/var/www/wordpress --locale=ja --version=4.4
   sudo -u apache -- /usr/local/bin/wp core config --path=/var/www/wordpress \
     --dbname=wordpress --dbuser=wordpress --dbpass="${wordpress_mysql_password}"
 }
