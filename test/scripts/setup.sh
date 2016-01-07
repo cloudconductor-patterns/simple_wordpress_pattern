@@ -2,4 +2,4 @@
 
 cd $(dirname $0)/data
 
-source ./event_handler.sh wordpress setup 2>&1
+source ./scripts/setup_wordpress.sh wordpress 2>&1

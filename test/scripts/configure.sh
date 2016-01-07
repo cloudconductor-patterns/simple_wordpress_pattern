@@ -2,7 +2,7 @@
 
 cd $(dirname $0)/data
 
-source ./event_handler.sh wordpress setup 2>&1
+source ./scripts/setup_wordpress.sh wordpress 2>&1
 
 if [ ! -d /opt/cloudconductor ]; then
   mkdir -p /opt/cloudconductor
@@ -18,6 +18,6 @@ _EOF_
 
 which systemctl && systemctl start httpd ||  service httpd start
 
-source ./event_handler.sh wordpress configure 2>&1
+source ./scripts/configure_wordpress.sh wordpress 2>&1
 
-source ./event_handler.sh wordpress spec 2>&1
+source ./scripts/spec_wordpress.sh wordpress 2>&1
