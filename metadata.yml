@@ -7,12 +7,20 @@ version:          "0.0.1"
 url:              "https://github.com/kz-takahashi/wordpress_pattern"
 
 type:      "platform"
-depends:   []
+dependencies: ["common_network"]
 conflicts: []
 
 roles:
   - wordpress
 
+providers:
+    aws:
+      - cloud_formation
+      - terraform
+    openstack:
+      - cloud_formation
+      - terraform
+
 supports:
-  - os: "centos"
-    version: "= 6.5"
+  - platform: "centos"
+    platform_version: '6.5'

@@ -1,13 +1,34 @@
-variable "vpc_id" {}
-variable "shared_security_group" {}
-variable "key_name" {}
-variable "wp_image" {}
-variable "wp_instance_type" {}
-variable "wordpress_user" {}
-variable "wordpress_title" {}
-variable "wordpress_admin_user" {}
-variable "wordpress_admin_pswd" {}
-variable "wordpress_admin_email" {}
+variable "vpc_id" {
+  description = "VPC ID which is created by common network pattern."
+}
+variable "shared_security_group" {
+  description = "SecurityGroup ID which is created by common network pattern."
+}
+variable "key_name" {
+  description = "Name of an existing EC2/OpenStack KeyPair to enable SSH access to the instances."
+}
+variable "wp_image" {
+  description = "[computed] Wordpress Image Id. This parameter is automatically filled by CloudConductor."
+}
+variable "wp_instance_type" {
+  description = "Wordpress instance type."
+  default = "t2.small"
+}
+variable "wordpress_user" {
+  description = "Wordpress user name."
+}
+variable "wordpress_title" {
+  description = "Wordpress title."
+}
+variable "wordpress_admin_user" {
+  description = "Wordpress admin user name."
+}
+variable "wordpress_admin_pswd" {
+  description = "Wordpress admin user password."
+}
+variable "wordpress_admin_email" {
+  description = "Wordpress admin email address."
+}
 
 resource "template_file" "init" {
   template = "${file("init.tpl")}"
