@@ -1,5 +1,5 @@
-variable "vpc_id" {
-  description = "VPC ID which is created by common network pattern."
+variable "subnet_ids" {
+  description = "Subnet ID which is created by common network pattern."
 }
 variable "shared_security_group" {
   description = "SecurityGroup ID which is created by common network pattern."
