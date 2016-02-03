@@ -7,10 +7,10 @@ variable "shared_security_group" {
 variable "key_name" {
   description = "Name of an existing EC2/OpenStack KeyPair to enable SSH access to the instances."
 }
-variable "wp_image" {
+variable "wordpress_image" {
   description = "[computed] Wordpress Image Id. This parameter is automatically filled by CloudConductor."
 }
-variable "wp_instance_type" {
+variable "wordpress_instance_type" {
   description = "Wordpress instance type."
   default = "t2.small"
 }
