@@ -14,8 +14,8 @@ variable "wordpress_instance_type" {
   description = "Wordpress instance type."
   default = "t2.small"
 }
-variable "wordpress_user" {
-  description = "Wordpress user name."
+variable "wordpress_url" {
+  description = "Wordpress url"
 }
 variable "wordpress_title" {
   description = "Wordpress title."
@@ -34,7 +34,7 @@ resource "template_file" "init" {
   template = "${file("${path.module}/init.tpl")}"
 
   vars {
-    wordpress_url = "${var.wordpress_user}"
+    wordpress_url = "${var.wordpress_url}"
     wordpress_title = "${var.wordpress_title}"
     wordpress_admin_user = "${var.wordpress_admin_user}"
     wordpress_admin_pswd = "${var.wordpress_admin_pswd}"
@@ -67,9 +67,9 @@ resource "aws_instance" "wp_server" {
 }
 
 output "cluster_addresses" {
-  value = "${join(",", aws_instance.wp_server.*.private_ip)}"
+  value = "${aws_instance.wp_server.private_ip}"
 }
 
 output "frontend_addresses" {
-  value = "${join(",", aws_instance.wp_server.*.public_ip)}"
+  value = "${aws_instance.wp_server.public_ip}"
 }
