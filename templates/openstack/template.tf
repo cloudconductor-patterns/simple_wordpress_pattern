@@ -67,15 +67,15 @@ resource "openstack_compute_instance_v2" "wp_server" {
   }
   key_pair = "${var.key_name}"
   security_groups = ["${openstack_compute_secgroup_v2.wp_security_group.name}", "${var.shared_security_group}"]
-  floating_ip = "${element(openstack_compute_floatingip_v2.main.*.address, count.index)}"
+  floating_ip = "${openstack_compute_floatingip_v2.main.address}"
   user_data = "${template_file.init.rendered}"
 }
 
 output "cluster_addresses" {
-  value = "${join(",", openstack_compute_instance_v2.wp_server.*.network.0.fixed_ip_v4)}"
+  value = "${openstack_compute_instance_v2.wp_server.network.0.fixed_ip_v4}"
 }
 
 
 output "frontend_addresses" {
-  value = "${join(",", openstack_compute_floatingip_v2.main.*.address)}"
+  value = "${openstack_compute_floatingip_v2.main.address}"
 }
