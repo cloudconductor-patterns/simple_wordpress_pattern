@@ -55,8 +55,8 @@ resource "aws_security_group" "wp_security_group" {
 }
 
 resource "aws_instance" "wp_server" {
-  ami = "${var.wp_image}"
-  instance_type = "${var.wp_instance_type}"
+  ami = "${var.wordpress_image}"
+  instance_type = "${var.wordpress_instance_type}"
   key_name = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.wp_security_group.id}", "${var.shared_security_group}"]
   associate_public_ip_address = true

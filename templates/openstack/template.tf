@@ -59,8 +59,8 @@ resource "openstack_compute_secgroup_v2" "wp_security_group" {
 
 resource "openstack_compute_instance_v2" "wp_server" {
   name = "WordPressServer"
-  image_id = "${var.wp_image}"
-  flavor_name = "${var.wp_instance_type}"
+  image_id = "${var.wordpress_image}"
+  flavor_name = "${var.wordpress_instance_type}"
   metadata {
     Role = "wordpress"
     Name = "WordPressServer"
