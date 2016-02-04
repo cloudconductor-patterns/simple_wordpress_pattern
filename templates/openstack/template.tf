@@ -31,7 +31,7 @@ variable "wordpress_admin_email" {
 }
 
 resource "template_file" "init" {
-  template = "${file("${path.cwd}/init.tpl")}"
+  template = "${file("${path.module}/init.tpl")}"
 
   vars {
     wordpress_url = "${var.wordpress_user}"
