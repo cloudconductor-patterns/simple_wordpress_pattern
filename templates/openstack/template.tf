@@ -72,10 +72,10 @@ resource "openstack_compute_instance_v2" "wp_server" {
 }
 
 output "cluster_addresses" {
-  value = "${openstack_compute_instance_v2.wp_server.*.network.0.fixed_ip_v4}"
+  value = "${join(",", openstack_compute_instance_v2.wp_server.*.network.0.fixed_ip_v4)}"
 }
 
 
 output "frontend_addresses" {
-  value = "${openstack_compute_floatingip_v2.main.*.address}"
+  value = "${join(",", openstack_compute_floatingip_v2.main.*.address)}"
 }

@@ -67,9 +67,9 @@ resource "aws_instance" "wp_server" {
 }
 
 output "cluster_addresses" {
-  value = "${aws_instance.wp_server.*.private_ip}"
+  value = "${join(",", aws_instance.wp_server.*.private_ip)}"
 }
 
 output "frontend_addresses" {
-  value = "${aws_instance.wp_server.*.public_ip}"
+  value = "${join(",", aws_instance.wp_server.*.public_ip)}"
 }
