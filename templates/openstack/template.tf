@@ -69,6 +69,9 @@ resource "openstack_compute_instance_v2" "wp_server" {
   security_groups = ["${openstack_compute_secgroup_v2.wp_security_group.name}", "${var.shared_security_group}"]
   floating_ip = "${openstack_compute_floatingip_v2.main.address}"
   user_data = "${template_file.init.rendered}"
+  network {
+    uuid = "${element(split(", ", var.subnet_ids), 0)}"
+  }
 }
 
 output "cluster_addresses" {
