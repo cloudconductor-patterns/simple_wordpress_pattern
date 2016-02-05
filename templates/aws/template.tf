@@ -1,6 +1,9 @@
 variable "vpc_id" {
   description = "VPC ID which is created by common network pattern."
 }
+variable "subnet_ids" {
+  description = "Subnet ID which is created by common network pattern."
+}
 variable "shared_security_group" {
   description = "SecurityGroup ID which is created by common network pattern."
 }
@@ -59,6 +62,7 @@ resource "aws_instance" "wp_server" {
   instance_type = "${var.wordpress_instance_type}"
   key_name = "${var.key_name}"
   vpc_security_group_ids = ["${aws_security_group.wp_security_group.id}", "${var.shared_security_group}"]
+  subnet_id = "${element(split(", ", var.subnet_ids), 0)}"
   associate_public_ip_address = true
   tags {
     Name = "WordPressServer"
