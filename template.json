@@ -160,7 +160,7 @@
           "  --stack ", { "Ref": "AWS::StackName" },
           "  --resource WordPressServer",
           "  --region ", { "Ref": "AWS::Region" }, " || error_exit 'Faild to run cfn-init'\n",
-          "/etc/init.d/consul start || error_exit 'Failed to start consul agent'\n",
+          "/etc/init.d/consul restart || error_exit 'Failed to start consul agent'\n",
           "hostname=`hostname`\n",
           "for i in `seq 10`; do\n",
           "  if [ ! -z \"`/usr/local/bin/consul members | grep ${hostname}`\" ]; then\n",
