@@ -39,6 +39,10 @@ output "cluster_addresses" {
   value = "${aws_instance.wp_server.private_ip}"
 }
 
-output "frontend_addresses" {
+output "frontend_address" {
+  value = "${aws_instance.wp_server.public_ip}"
+}
+
+output "consul_addresses" {
   value = "${aws_instance.wp_server.public_ip}"
 }

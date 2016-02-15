@@ -47,6 +47,10 @@ output "cluster_addresses" {
 }
 
 
-output "frontend_addresses" {
+output "frontend_address" {
+  value = "${openstack_compute_floatingip_v2.main.address}"
+}
+
+output "consul_addresses" {
   value = "${openstack_compute_floatingip_v2.main.address}"
 }
