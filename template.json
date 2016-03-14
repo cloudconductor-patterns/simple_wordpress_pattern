@@ -143,7 +143,7 @@
           "WordPressTitle='", { "Ref": "WordPressTitle" }, "'\n",
           "WordPressAdminUser='", { "Ref": "WordPressAdminUser" }, "'\n",
           "WordPressAdminPassword='", { "Ref": "WordPressAdminPassword" }, "'\n",
-          "WordPressAdminEmail='", { "Ref": "WordPressAdminEmail" }, "'\n"
+          "WordPressAdminEmail='", { "Ref": "WordPressAdminEmail" }, "'\n",
           "EOF\n",
           "",
           "# Run Consul\n",
