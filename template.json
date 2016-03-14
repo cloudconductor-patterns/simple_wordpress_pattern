@@ -112,34 +112,7 @@
       "Type" : "AWS::EC2::Instance",
       "Metadata" : {
         "Role" : "wordpress",
-        "Frontend" : "true",
-        "AWS::CloudFormation::Init": {
-          "config": {
-            "commands": {
-              "edit_config": {
-                "command": { "Fn::Join": [ "", [
-                  "cat >> /opt/cloudconductor/config <<EOF\n",
-                  "ROLE=wordpress\n",
-                  "STACK_NAME=", { "Ref": "AWS::StackName" }, "\n",
-                  "RESOURCE_NAME=WordPressServer\n",
-                  "REGION=", { "Ref": "AWS::Region" }, "\n",
-                  "EOF"
-                ]]}
-              }
-            },
-            "files": {
-              "/opt/cloudconductor/cfn_parameters": {
-                "content": { "Fn::Join": [ "", [
-                  "WordPressUrl='", { "Ref": "WordPressUrl" }, "'\n",
-                  "WordPressTitle='", { "Ref": "WordPressTitle" }, "'\n",
-                  "WordPressAdminUser='", { "Ref": "WordPressAdminUser" }, "'\n",
-                  "WordPressAdminPassword='", { "Ref": "WordPressAdminPassword" }, "'\n",
-                  "WordPressAdminEmail='", { "Ref": "WordPressAdminEmail" }, "'\n"
-                ]]}
-              }
-            }
-          }
-        }
+        "Frontend" : "true"
       },
       "Properties" : {
         "ImageId" : { "Ref" : "WordpressImageId" },
@@ -156,10 +129,24 @@
           "  cfn-signal -e 1 -r \"$1\" '", { "Ref" : "WordPressWaitHandle" }, "'\n",
           "  exit 1\n",
           "}\n",
-          "cfn-init -v",
-          "  --stack ", { "Ref": "AWS::StackName" },
-          "  --resource WordPressServer",
-          "  --region ", { "Ref": "AWS::Region" }, " || error_exit 'Faild to run cfn-init'\n",
+          "# Set Parameters\n",
+          "cat >> /opt/cloudconductor/config <<EOF\n",
+          "ROLE=wordpress\n",
+          "STACK_NAME=", { "Ref": "AWS::StackName" }, "\n",
+          "RESOURCE_NAME=WordPressServer\n",
+          "REGION=", { "Ref": "AWS::Region" }, "\n",
+          "EOF\n",
+          "",
+          "# Create cfn_parameters\n",
+          "cat >> /opt/cloudconductor/cfn_parameters <<EOF\n",
+          "WordPressUrl='", { "Ref": "WordPressUrl" }, "'\n",
+          "WordPressTitle='", { "Ref": "WordPressTitle" }, "'\n",
+          "WordPressAdminUser='", { "Ref": "WordPressAdminUser" }, "'\n",
+          "WordPressAdminPassword='", { "Ref": "WordPressAdminPassword" }, "'\n",
+          "WordPressAdminEmail='", { "Ref": "WordPressAdminEmail" }, "'\n"
+          "EOF\n",
+          "",
+          "# Run Consul\n",
           "/etc/init.d/consul restart || error_exit 'Failed to start consul agent'\n",
           "hostname=`hostname`\n",
           "for i in `seq 10`; do\n",
