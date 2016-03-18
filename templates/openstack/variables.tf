@@ -17,9 +17,6 @@ variable "wordpress_instance_type" {
   description = "Wordpress instance type."
   default = "t2.small"
 }
-variable "wordpress_url" {
-  description = "Wordpress url."
-}
 variable "wordpress_title" {
   description = "Wordpress title."
 }

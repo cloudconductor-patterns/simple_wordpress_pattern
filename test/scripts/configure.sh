@@ -9,7 +9,6 @@ if [ ! -d /opt/cloudconductor ]; then
 fi
 
 cat <<_EOF_ > /opt/cloudconductor/cfn_parameters
-WordPressUrl="http://example.com/wp/"
 WordPressTitle="example"
 WordPressAdminUser="admin"
 WordPressAdminPassword="password"

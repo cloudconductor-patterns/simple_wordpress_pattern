@@ -2,7 +2,6 @@ resource "template_file" "init" {
   template = "${file("${path.module}/init.tpl")}"
 
   vars {
-    wordpress_url = "${var.wordpress_url}"
     wordpress_title = "${var.wordpress_title}"
     wordpress_admin_user = "${var.wordpress_admin_user}"
     wordpress_admin_password = "${var.wordpress_admin_password}"

@@ -3,10 +3,6 @@
   "Description" : "CloudConductor pattern template",
 
   "Parameters" : {
-    "WordPressUrl": {
-      "Description": "Wordpress root url",
-      "Type": "String"
-    },
     "WordPressTitle": {
       "Description": "Wordpress title name",
       "Type": "String"
@@ -139,7 +135,6 @@
           "",
           "# Create cfn_parameters\n",
           "cat >> /opt/cloudconductor/cfn_parameters <<EOF\n",
-          "WordPressUrl='", { "Ref": "WordPressUrl" }, "'\n",
           "WordPressTitle='", { "Ref": "WordPressTitle" }, "'\n",
           "WordPressAdminUser='", { "Ref": "WordPressAdminUser" }, "'\n",
           "WordPressAdminPassword='", { "Ref": "WordPressAdminPassword" }, "'\n",
