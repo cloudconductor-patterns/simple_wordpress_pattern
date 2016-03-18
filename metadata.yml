@@ -1,8 +1,8 @@
 name:             "wordpress_pattern"
 maintainer:       "TIS Inc."
-maintainer_email: "takahashi.kazuya@tis.co.jp"
+maintainer_email: "ccndctr@gmail.com"
 license:          "Apache v2.0"
-description:      "Install WordPress"
+description:      "CloudConductor platform pattern for install WordPress"
 version:          "0.0.1"
 url:              "https://github.com/cloudconductor-patterns/simple_wordpress_pattern"
 
@@ -23,4 +23,6 @@ providers:
 
 supports:
   - platform: "centos"
-    platform_version: '7.1'
+    platform_version: "6.7"
+  - platform: "centos"
+    platform_version: "7.2"
