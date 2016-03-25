@@ -12,12 +12,16 @@ function setup_wordpress() {
 
   # Install dependencies
   yum -y update
-  yum -y install python-setuptools
-  easy_install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
   yum -y install httpd ${dbname}-server
   yum -y install php php-mysql php-mbstring php-gd
   service_ctl enable httpd
   service_ctl enable ${dbsvcname}
+
+  run which cfn-get-metadata
+  if [ $status -ne 0 ] ; then
+    yum -y install python-setuptools
+    easy_install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
+  fi
 
   # Create Database User
   service_ctl start ${dbsvcname}
