@@ -1,0 +1,103 @@
+#
+# CloudConductor Pattern:: wordpress_pattern
+# Name:: task.yml
+#
+# Copyright 2015, TIS Inc.
+#
+# All rights reserved - Do Not Redistribute
+#
+
+#
+# Environments
+#
+environments:
+  HOME: /root
+  PATH: $PATH:/usr/local/bin:/usr/bin
+  ROLE: '{{config.role}}'
+  CONSUL_SECRET_KEY: '{{config.token}}'
+
+#
+# Variables
+#
+# be defined the key-value map to use in this task.yml file.
+#
+# variables:
+
+#
+# Default
+#
+# be defined the default value of parameters.
+#
+default:
+  timeout: 1800
+  chef:
+    attribute_keys:
+      - cloudconductor
+
+#
+# Events
+#
+events:
+  setup:
+    description: Execute setup
+    task: setup_task
+
+  configure:
+    description: Execute configure
+    task: configure_task
+
+  deploy:
+    description: Execute deploy
+    task: deploy_task
+
+  backup:
+    description: Execute backup
+    task: backup_task
+
+  restore:
+    description: Execute restore
+    task: restore_task
+
+  spec:
+    description: Execute spec
+    task: spec_task
+
+#
+# Tasks
+#
+tasks:
+  setup_task:
+    description: Execute setup
+    operations:
+      - execute:
+          script: ./scripts/setup_wordpress.sh {{role}}
+
+  configure_task:
+    description: Execute configure
+    operations:
+      - execute:
+          script: ./scripts/configure_wordpress.sh {{role}}
+
+  deploy_task:
+    description: Execute deploy
+    operations:
+      - execute:
+          script: echo "not implemented yet!"
+
+  backup_task:
+    description: Execute backup
+    operations:
+      - execute:
+          script: echo "do nothing"
+
+  restore_task:
+    description: Execute restore
+    operations:
+      - execute:
+          script: echo "do nothing"
+
+  spec_task:
+    description: Execute serverspec
+    operations:
+      - execute:
+          script: ./scripts/spec_wordpress.sh {{role}}
